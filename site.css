@@ -202,7 +202,8 @@ html.modo-claro .icon-wrap-mode{transform:translateY(-30px)}
   background:
     linear-gradient(90deg,rgba(21,21,23,.94) 0%,rgba(21,21,23,.72) 38%,rgba(21,21,23,.28) 72%,rgba(21,21,23,.38) 100%),
     linear-gradient(180deg,rgba(21,21,23,.7) 0%,transparent 22%,transparent 62%,var(--fundo-pagina) 100%)}
-.hero-content{display:grid;gap:20px}
+/* o hero usa a tela mais larga que o resto: texto mais à esquerda, botões mais à direita */
+.hero-content{display:grid;gap:20px;max-width:1440px;padding-inline:clamp(20px,5vw,72px)}
 .hero-label{font-size:13px;line-height:16px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-medio)}
 /* line-height acima de 1: cada letra entra por uma máscara e o "g" e o "p" precisam de espaço para a perna */
 .hero-nome{font-size:clamp(48px,7vw,96px);line-height:1.08;font-weight:500;letter-spacing:-.04em;color:#FDF7E9;
