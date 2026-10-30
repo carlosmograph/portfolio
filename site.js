@@ -183,6 +183,11 @@
          player pode exibir a capa ou o primeiro quadro */
       var inicio = Number(q.dataset.inicio || 0);
       if (!inicio || (d.data && d.data.seconds >= inicio)) q.classList.add("tocando");
+      if (inicio && d.data) {
+        q._visto = Date.now();
+        /* fecha o loop antes do fim: volta ao ponto de início, sem passar pela abertura */
+        if (d.data.duration && d.data.seconds >= d.data.duration - 0.4) comandar(q, "setCurrentTime", inicio);
+      }
     }
   });
   function videoDeFundo(caixa, id, hash, extra) {
@@ -205,14 +210,32 @@
   }
 
   /* vídeo de fundo fora da tela fica pausado: não gasta dados nem processador */
-  function comandar(caixa, metodo) {
+  function comandar(caixa, metodo, valor) {
     var f = caixa.querySelector("iframe");
-    if (f) f.contentWindow.postMessage(JSON.stringify({ method: metodo }), "https://player.vimeo.com");
+    if (f) f.contentWindow.postMessage(JSON.stringify({ method: metodo, value: valor }), "https://player.vimeo.com");
   }
   var pausador = window.IntersectionObserver && new IntersectionObserver(function (es) {
     es.forEach(function (en) { comandar(en.target, en.isIntersecting ? "play" : "pause"); });
   });
   if (reel && pausador) pausador.observe(reel);
+  /* vigia do demoreel: se parar de avançar com a home visível, retoma */
+  if (reel) {
+    var reelNaTela = true;
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) {
+      reelNaTela = es[0].isIntersecting;
+      reel._visto = Date.now();
+    }).observe(reel);
+    setInterval(function () {
+      if (!reelNaTela || document.hidden || !reel._visto || Date.now() - reel._visto < 3000) return;
+      reel._visto = Date.now();
+      comandar(reel, "setCurrentTime", Number(reel.dataset.inicio || 0));
+      comandar(reel, "play");
+    }, 1000);
+    document.addEventListener("visibilitychange", function () {
+      reel._visto = Date.now();
+      if (!document.hidden && reelNaTela) comandar(reel, "play");
+    });
+  }
 
   /* pastas e projetos: no hover a capa vira a prévia animada do trabalho */
   if (fino && !reduz) {
