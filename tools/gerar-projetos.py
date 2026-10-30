@@ -194,7 +194,7 @@ def casca(titulo, descricao, raiz, conteudo):
 <title>{e(titulo)} — Carlos Mograph</title>
 <meta name="description" content="{e(descricao[:150])}">
 <meta name="theme-color" content="#151517">
-{ICONE}
+{para_subpasta(ICONE, raiz)}
 <script>
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-anim");
   try {{ if (localStorage.getItem("crmo-modo") === "claro") document.documentElement.classList.add("modo-claro"); }} catch (e) {{}}
