@@ -499,6 +499,12 @@ html.modo-claro .radio-button-field input:checked + span{background:#1C1C1C;bord
 .projeto-frames img{display:block;width:100%;height:auto;margin-bottom:12px;border-radius:14px;border:1px solid var(--linha);break-inside:avoid}
 .projeto-videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .projeto-videos .video-frame{width:100%;border-radius:14px;box-shadow:none}
+/* série de vídeos curtos (versões da marca), com legenda embaixo */
+.projeto-serie{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.projeto-serie-item{margin:0;display:grid;gap:8px}
+.projeto-serie-item .video-frame{width:100%;border-radius:14px;box-shadow:none}
+.projeto-serie-item figcaption{font-size:13px;line-height:18px;color:var(--tx-medio)}
+@media(max-width:767px){.projeto-serie{grid-template-columns:1fr}}
 .projeto-posts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .projeto-posts img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;border:1px solid var(--linha)}
 .projeto-behance{margin-top:24px}

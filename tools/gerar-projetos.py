@@ -83,6 +83,18 @@ MOTION = [
          texto="Logo reveal desenvolvido para a Eleva, com foco em sofisticação, impacto visual e construção de marca. A "
                "animação utiliza movimentos fluidos, iluminação cinematográfica e transições minimalistas para valorizar a "
                "identidade visual da empresa de forma elegante e moderna."),
+    dict(slug="orconalt", nome="Orconalt", cliente="Orconalt Gestão Empresarial", categoria="Logo reveal", ano="2026",
+         duracao="0:10", formato="16:9 em 1440p", capa="projetos/orconalt/capa.webp",
+         # vídeos curtos e sem som: tocam sozinhos, em loop
+         mp4=("projetos/orconalt/orconalt-chumbo.mp4", "projetos/orconalt/capa.webp"), mp4_auto=True,
+         mp4_serie=("Mais versões", "A assinatura nos dois fundos da marca, e o símbolo sozinho.", [
+             ("projetos/orconalt/orconalt-offwhite.mp4", "projetos/orconalt/capa-offwhite.webp", "Versão off-white"),
+             ("projetos/orconalt/simbolo-escuro.mp4", "projetos/orconalt/capa-simbolo-escuro.webp", "Símbolo, fundo chumbo"),
+             ("projetos/orconalt/simbolo-claro.mp4", "projetos/orconalt/capa-simbolo-claro.webp", "Símbolo, fundo off-white")]),
+         grupos=[("Construção do símbolo", "Das linhas do desenho à marca completa.", [f"frame-{i:02d}.webp" for i in range(1, 5)])],
+         texto="Logo reveal para a Orconalt, de gestão empresarial. O símbolo nasce das linhas do próprio desenho, ganha "
+               "peso e abre espaço para o nome da marca. A animação foi entregue nos dois fundos da identidade, chumbo e "
+               "off-white, e também só com o símbolo, para vinhetas e aplicações curtas."),
     dict(slug="orbion-saas", nome="Orbion Place SaaS", cliente="Orbion Place", categoria="Motion SaaS", ano="2026",
          duracao="0:26", formato="16:9 horizontal e 9:16 vertical", capa="projetos/orbion-saas/capa.webp",
          # vídeos hospedados no próprio site (MP4 comprimido), não no Vimeo
@@ -155,7 +167,7 @@ PASTAS = [
          projetos=["casas-bahia", "quero-delivery"]),
     dict(slug="logo-reveal", nome="Logo reveal", apoio="Marcas em movimento", frase="Marcas que se movem",
          imagem="motion/djthiago-capa.webp", anim="motion/djthiago.webp",
-         projetos=["dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
+         projetos=["orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
     dict(slug="institucional", nome="Institucional", apoio="Vídeos de marca", frase="Marca em movimento",
          imagem="motion/lotenet-capa.webp", anim="motion/lotenet.webp",
          projetos=["orbion-saas", "lotenet"]),
@@ -262,9 +274,11 @@ def iframe(vid, h, prop, titulo):
             f'title="{e(titulo)}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>')
 
 
-def video_local(arquivo, capa, prop, titulo, raiz):
+def video_local(arquivo, capa, prop, titulo, raiz, auto=False):
+    """auto: vídeo curto e sem som, que toca sozinho em loop (logo reveal)."""
+    modo = "autoplay muted loop " if auto else ""
     return (f'<div class="video-frame" style="--proporcao:{prop}"><video src="{raiz}assets/{arquivo}" poster="{raiz}assets/{capa}" '
-            f'controls playsinline preload="metadata" title="{e(titulo)}"></video></div>')
+            f'{modo}controls playsinline preload="metadata" title="{e(titulo)}"></video></div>')
 
 
 def secao_titulo(titulo, apoio):
@@ -284,7 +298,7 @@ def pagina_projeto(p, proximo):
         if "video" in p:
             midia = iframe(*p["video"], prop, p["nome"])
         elif "mp4" in p:
-            midia = video_local(*p["mp4"], prop, p["nome"], raiz)
+            midia = video_local(*p["mp4"], prop, p["nome"], raiz, p.get("mp4_auto", False))
         else:
             midia = (f'<div class="video-frame" style="--proporcao:{prop}"><img src="{raiz}assets/{p["abertura"]}" '
                      f'alt="{e(p["nome"])}" loading="eager"></div>')
@@ -293,6 +307,11 @@ def pagina_projeto(p, proximo):
             vids = "".join(iframe(v, h, pr, f'{p["nome"]} — peça {i + 2}') for i, (v, h, pr) in enumerate(p["extras"]))
             blocos.append(f'<section class="projeto-bloco">{secao_titulo("Mais peças da série", "Cada versão da marca, no formato em que roda.")}'
                           f'<div class="projeto-videos">{vids}</div></section>')
+        if p.get("mp4_serie"):
+            titulo, apoio, itens = p["mp4_serie"]
+            vids = "".join(f'<figure class="projeto-serie-item">{video_local(arq, cp, prop, rot, raiz, True)}'
+                           f'<figcaption>{e(rot)}</figcaption></figure>' for arq, cp, rot in itens)
+            blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}<div class="projeto-serie">{vids}</div></section>')
         for titulo, apoio, arquivo, capa, pr in p.get("mp4_extras", []):
             blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}'
                           f'<div class="projeto-video-unico">{video_local(arquivo, capa, pr, f"{p['nome']} — {titulo}", raiz)}</div></section>')
