@@ -155,7 +155,7 @@
 
   /* --- marquees: velocidade constante em px/s, seja qual for a largura --- */
   document.querySelectorAll(".marquee-track").forEach(function (trilha) {
-    var vel = trilha.closest(".hero-marquee") ? 110 : trilha.closest(".logos-marquee") ? 40 : 60;
+    var vel = trilha.closest(".hero-marquee") ? 110 : trilha.closest(".logos-marquee") ? 75 : 60;
     function medir() {
       trilha.style.setProperty("--dur", (trilha.firstElementChild.offsetWidth / vel).toFixed(1) + "s");
     }
