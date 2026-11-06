@@ -91,7 +91,7 @@ MOTION = [
              ("projetos/orconalt/orconalt-offwhite.mp4", "projetos/orconalt/capa-offwhite.webp", "Versão off-white"),
              ("projetos/orconalt/simbolo-escuro.mp4", "projetos/orconalt/capa-simbolo-escuro.webp", "Símbolo, fundo chumbo"),
              ("projetos/orconalt/simbolo-claro.mp4", "projetos/orconalt/capa-simbolo-claro.webp", "Símbolo, fundo off-white")]),
-         grupos=[("Construção do símbolo", "Das linhas do desenho à marca completa.", [f"frame-{i:02d}.webp" for i in range(1, 5)])],
+         grupos=[("Styleframes", "Das linhas do desenho à marca completa, nos dois fundos.", [f"frame-{i:02d}.webp" for i in range(1, 7)])],
          texto="Logo reveal para a Orconalt, de gestão empresarial. O símbolo nasce das linhas do próprio desenho, ganha "
                "peso e abre espaço para o nome da marca. A animação foi entregue nos dois fundos da identidade, chumbo e "
                "off-white, e também só com o símbolo, para vinhetas e aplicações curtas."),
