@@ -83,6 +83,17 @@ MOTION = [
          texto="Logo reveal desenvolvido para a Eleva, com foco em sofisticação, impacto visual e construção de marca. A "
                "animação utiliza movimentos fluidos, iluminação cinematográfica e transições minimalistas para valorizar a "
                "identidade visual da empresa de forma elegante e moderna."),
+    dict(slug="cavini", nome="Cavini", cliente="Cavini", categoria="Logo reveal", ano="2026",
+         duracao="0:07 + reel de 0:18", formato="16:9 (logo) e 9:16 (reel)", capa="projetos/cavini/capa-reel.webp",
+         mp4=("projetos/cavini/cavini-logo.mp4", "projetos/cavini/capa.webp"), mp4_auto=True,
+         mp4_extras=[("Reel", "Linguagem esportiva, cortes rápidos e movimento na batida da música.",
+                      "projetos/cavini/cavini-reel.mp4", "projetos/cavini/capa-reel.webp", "9/16")],
+         grupos=[("Styleframes", "Cenas do reel.", [f"frame-{i:02d}.webp" for i in range(1, 9)])],
+         texto="Dar movimento a uma identidade é também encontrar o ritmo certo para ela. Para a Cavini, desenvolvi uma "
+               "animação de logo e um reel com linguagem esportiva, cortes rápidos e movimentos sincronizados com a "
+               "batida da música, reforçando a energia e a personalidade da marca. A ideia foi transformar a "
+               "identidade visual em uma experiência mais dinâmica, mantendo força, ritmo e presença em cada frame. "
+               "Branding: Studio Viss. Motion design e edição: Carlos Mograph."),
     dict(slug="picpay", nome="PicPay", cliente="PicPay (projeto autoral, não oficial)", categoria="Motion 3D", ano="2026",
          duracao="0:17", formato="16:9 horizontal", capa="projetos/picpay/capa.webp",
          mp4=("projetos/picpay/picpay.mp4", "projetos/picpay/capa.webp"),
@@ -176,7 +187,7 @@ PASTAS = [
          projetos=["picpay", "casas-bahia", "quero-delivery"]),
     dict(slug="logo-reveal", nome="Logo reveal", apoio="Marcas em movimento", frase="Marcas que se movem",
          imagem="motion/djthiago-capa.webp", anim="motion/djthiago.webp",
-         projetos=["orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
+         projetos=["cavini", "orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
     dict(slug="institucional", nome="Institucional", apoio="Vídeos de marca", frase="Marca em movimento",
          imagem="motion/lotenet-capa.webp", anim="motion/lotenet.webp",
          projetos=["orbion-saas", "lotenet"]),
