@@ -217,8 +217,10 @@ html.modo-claro .icon-wrap-mode{transform:translateY(-30px)}
 .pessoas{display:flex}
 .pessoas i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--bg);
   border:2px solid #151517;overflow:hidden}
-.pessoas i + i{margin-left:-12px}
-.pessoas svg{width:30px;height:30px;margin-top:8px;fill:var(--st)}
+.pessoas i + i{margin-left:-10px}
+.pessoas i:nth-child(1){z-index:3}.pessoas i:nth-child(2){z-index:2}
+.pessoas i{position:relative}
+.pessoas img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-acoes{display:flex;flex-wrap:wrap;gap:12px}
 @media(max-width:767px){
   .hero-section{padding:120px 0 48px}

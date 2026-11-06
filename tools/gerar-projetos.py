@@ -148,6 +148,14 @@ MOTION = [
 # aparece nos posts e precisam da revisão do Carlos.
 # ------------------------------------------------------------------
 SOCIAL = [
+    dict(slug="5asec", nome="Lavanderia 5àsec", setor="Lavanderia", ano="2026", pecas=26,
+         behance="258147319/Social-Media-20-Lavanderia-5asec", capa="social/5asec.webp",
+         texto="Posts para a 5àsec de Feira de Santana que tratam o cuidado com a roupa como cuidado com a imagem: "
+               "manchas, desgaste e formaturas viram ganchos, no roxo e no laranja da marca."),
+    dict(slug="aldeia-do-lago", nome="Aldeia do Lago", setor="Loteamento", ano="2026", pecas=16,
+         behance="258147019/Social-Media-20-Aldeia-do-Lago", capa="social/aldeia-do-lago.webp",
+         texto="Feed do Aldeia do Lago Home Resort que vende o lote pela vida ao redor: o lago, a paisagem e os "
+               "encontros em família, com tipografia leve e imagens em luz de fim de tarde."),
     dict(slug="biomundo", nome="BioMundo", setor="Saúde natural", ano="2026", pecas=15,
          behance="254764033/Social-Media-19-BioMundo", capa="social/biomundo.webp",
          texto="Feed para a BioMundo, de produtos naturais, com posts que explicam suplementos e alimentação natural "
