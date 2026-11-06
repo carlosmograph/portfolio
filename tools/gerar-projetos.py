@@ -83,6 +83,15 @@ MOTION = [
          texto="Logo reveal desenvolvido para a Eleva, com foco em sofisticação, impacto visual e construção de marca. A "
                "animação utiliza movimentos fluidos, iluminação cinematográfica e transições minimalistas para valorizar a "
                "identidade visual da empresa de forma elegante e moderna."),
+    dict(slug="picpay", nome="PicPay", cliente="PicPay (projeto autoral, não oficial)", categoria="Motion 3D", ano="2026",
+         duracao="0:17", formato="16:9 horizontal", capa="projetos/picpay/capa.webp",
+         mp4=("projetos/picpay/picpay.mp4", "projetos/picpay/capa.webp"),
+         grupos=[("Styleframes", "Do cofre ao cartão na mão.", [f"frame-{i:02d}.webp" for i in range(1, 9)])],
+         ferramentas="Blender · After Effects",
+         texto="Projeto autoral para o PicPay, explorando uma direção visual minimalista e uma animação 3D focada em "
+               "transmitir inovação, tecnologia e fluidez. Todo o projeto foi criado por mim: modelagem e animação 3D no "
+               "Blender, composição e finalização no After Effects. Este é um projeto não oficial, desenvolvido "
+               "exclusivamente para estudo, portfólio e exploração criativa."),
     dict(slug="orconalt", nome="Orconalt", cliente="Orconalt Gestão Empresarial", categoria="Logo reveal", ano="2026",
          duracao="0:10", formato="16:9 em 1440p", capa="projetos/orconalt/capa.webp",
          # vídeos curtos e sem som: tocam sozinhos, em loop
@@ -164,7 +173,7 @@ VIMEO = "https://player.vimeo.com/video/{}?{}title=0&byline=0&portrait=0&dnt=1"
 PASTAS = [
     dict(slug="motion-ads", nome="Motion ads", apoio="Anúncios para tráfego pago", frase="Anúncios que vendem",
          imagem="motion/casasbahia-capa.webp", anim="motion/casasbahia.webp",
-         projetos=["casas-bahia", "quero-delivery"]),
+         projetos=["picpay", "casas-bahia", "quero-delivery"]),
     dict(slug="logo-reveal", nome="Logo reveal", apoio="Marcas em movimento", frase="Marcas que se movem",
          imagem="motion/djthiago-capa.webp", anim="motion/djthiago.webp",
          projetos=["orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
@@ -322,7 +331,7 @@ def pagina_projeto(p, proximo):
             blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}<div class="{classe}">{imgs}</div></section>')
         dados = ficha([("Cliente", p["cliente"]), ("Categoria", p["categoria"]), ("Ano", p["ano"]),
                        ("Duração", p["duracao"]), ("Formato", p["formato"]),
-                       ("Ferramentas", "After Effects · Premiere Pro")])
+                       ("Ferramentas", p.get("ferramentas", "After Effects · Premiere Pro"))])
     else:
         meta = [p["setor"], "Social media", p["ano"]]
         midia = f'<div class="projeto-capa"><img src="{raiz}assets/{p["capa"]}" alt="Posts para {e(p["nome"])}" loading="eager"></div>'
