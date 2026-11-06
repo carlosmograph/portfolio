@@ -242,12 +242,9 @@ html.modo-claro .icon-wrap-mode{transform:translateY(-30px)}
    7. MARCAS
    ------------------------------------------------------------ */
 .logos-section{padding:72px 0}
-.company-logo{display:flex;align-items:center;height:48px;margin-right:64px;white-space:nowrap;color:var(--tx-medio);
-  font-size:24px;line-height:1;opacity:.85}
-.l-caps{font-weight:700;letter-spacing:.14em;font-size:20px}
-.l-serif{font-family:var(--serif);font-style:italic;font-size:32px;letter-spacing:-.5px}
-.l-medio{font-weight:500;letter-spacing:-.6px}
-.l-bold{font-weight:700;letter-spacing:-1px;font-size:26px}
+.marquee-group{align-items:center}
+.company-logo{display:block;height:var(--h);width:auto;max-width:none;margin-right:72px;opacity:.8;flex:0 0 auto}
+@media (max-width:767px){.company-logo{margin-right:44px;height:calc(var(--h)*.72)}}
 
 /* ------------------------------------------------------------
    8. TRABALHOS: MOSAICO
