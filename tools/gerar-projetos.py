@@ -123,7 +123,7 @@ MOTION = [
                "contar como a empresa une marketing, vendas e recebíveis numa só estrutura, mistura imagens do evento, "
                "dos lançamentos e das regiões onde a Lotenet atua, e fecha com o convite para fazer parte do próximo "
                "nível dos lançamentos imobiliários."),
-    dict(slug="orbion-saas", nome="Orbion Place SaaS", cliente="Orbion Place", categoria="Motion SaaS", ano="2026",
+    dict(slug="orbion-saas", nome="Orbion Place SaaS", cliente="Orbion Place", categoria="Motion ads", ano="2026",
          duracao="0:26", formato="16:9 horizontal e 9:16 vertical", capa="projetos/orbion-saas/capa.webp",
          # vídeos hospedados no próprio site (MP4 comprimido), não no Vimeo
          mp4=("projetos/orbion-saas/orbion-horizontal.mp4", "projetos/orbion-saas/capa.webp"),
@@ -192,13 +192,13 @@ VIMEO = "https://player.vimeo.com/video/{}?{}title=0&byline=0&portrait=0&dnt=1"
 PASTAS = [
     dict(slug="motion-ads", nome="Motion ads", apoio="Anúncios para tráfego pago", frase="Anúncios que vendem",
          imagem="motion/casasbahia-capa.webp", anim="motion/casasbahia.webp",
-         projetos=["picpay", "casas-bahia", "quero-delivery"]),
+         projetos=["orbion-saas", "picpay", "casas-bahia", "quero-delivery"]),
     dict(slug="logo-reveal", nome="Logo reveal", apoio="Marcas em movimento", frase="Marcas que se movem",
          imagem="motion/djthiago-capa.webp", anim="motion/djthiago.webp",
          projetos=["cavini", "orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
     dict(slug="institucional", nome="Institucional", apoio="Vídeos de marca", frase="Marca em movimento",
          imagem="motion/lotenet-capa.webp", anim="motion/lotenet.webp",
-         projetos=["lotenet-adit-juris", "orbion-saas", "lotenet"]),
+         projetos=["lotenet-adit-juris", "lotenet"]),
     dict(slug="social-media", nome="Social media", apoio="Posts, carrosséis e feeds", frase="Feed com cara de marca",
          imagem="social/peralta.webp", anim=None,
          projetos=[p["slug"] for p in SOCIAL]),
