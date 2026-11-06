@@ -115,6 +115,14 @@ MOTION = [
          texto="Logo reveal para a Orconalt, de gestão empresarial. O símbolo nasce das linhas do próprio desenho, ganha "
                "peso e abre espaço para o nome da marca. A animação foi entregue nos dois fundos da identidade, chumbo e "
                "off-white, e também só com o símbolo, para vinhetas e aplicações curtas."),
+    dict(slug="lotenet-adit-juris", nome="Lotenet · ADIT Juris 2026", cliente="Lotenet", categoria="Institucional", ano="2026",
+         duracao="0:52", formato="16:9 horizontal", capa="projetos/lotenet-adit-juris/capa.webp",
+         mp4=("projetos/lotenet-adit-juris/lotenet-adit-juris.mp4", "projetos/lotenet-adit-juris/capa.webp"),
+         grupos=[("Styleframes", "Cenas do filme.", [f"frame-{i:02d}.webp" for i in range(1, 9)])],
+         texto="Vídeo institucional da Lotenet exibido no ADIT Juris 2026. O filme parte da palavra obstinação para "
+               "contar como a empresa une marketing, vendas e recebíveis numa só estrutura, mistura imagens do evento, "
+               "dos lançamentos e das regiões onde a Lotenet atua, e fecha com o convite para fazer parte do próximo "
+               "nível dos lançamentos imobiliários."),
     dict(slug="orbion-saas", nome="Orbion Place SaaS", cliente="Orbion Place", categoria="Motion SaaS", ano="2026",
          duracao="0:26", formato="16:9 horizontal e 9:16 vertical", capa="projetos/orbion-saas/capa.webp",
          # vídeos hospedados no próprio site (MP4 comprimido), não no Vimeo
@@ -190,7 +198,7 @@ PASTAS = [
          projetos=["cavini", "orconalt", "dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
     dict(slug="institucional", nome="Institucional", apoio="Vídeos de marca", frase="Marca em movimento",
          imagem="motion/lotenet-capa.webp", anim="motion/lotenet.webp",
-         projetos=["orbion-saas", "lotenet"]),
+         projetos=["lotenet-adit-juris", "orbion-saas", "lotenet"]),
     dict(slug="social-media", nome="Social media", apoio="Posts, carrosséis e feeds", frase="Feed com cara de marca",
          imagem="social/peralta.webp", anim=None,
          projetos=[p["slug"] for p in SOCIAL]),
