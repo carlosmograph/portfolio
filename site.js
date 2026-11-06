@@ -155,12 +155,16 @@
 
   /* --- marquees: velocidade constante em px/s, seja qual for a largura --- */
   document.querySelectorAll(".marquee-track").forEach(function (trilha) {
-    var vel = trilha.closest(".hero-marquee") ? 110 : 60;
+    var vel = trilha.closest(".hero-marquee") ? 110 : trilha.closest(".logos-marquee") ? 40 : 60;
     function medir() {
       trilha.style.setProperty("--dur", (trilha.firstElementChild.offsetWidth / vel).toFixed(1) + "s");
     }
     medir();
     if (document.fonts) document.fonts.ready.then(medir);
+    trilha.querySelectorAll("img").forEach(function (img) {
+      if (!img.complete) img.addEventListener("load", medir);
+    });
+    window.addEventListener("load", medir);
   });
 
   /* --- vídeos do Vimeo em modo fundo (mudo, em loop, sem controles) ---
