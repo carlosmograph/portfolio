@@ -89,7 +89,7 @@ MOTION = [
          mp4=("projetos/orbion-saas/orbion-horizontal.mp4", "projetos/orbion-saas/capa.webp"),
          mp4_extras=[("Versão vertical", "A mesma animação em 9:16, para Reels e Stories.",
                       "projetos/orbion-saas/orbion-vertical.mp4", "projetos/orbion-saas/capa-vertical.webp", "9/16")],
-         grupos=[("Destaques da animação", "Uma ideia por cena.", [f"frame-{i:02d}.webp" for i in range(1, 7)])],
+         grupos=[("Styleframes", "Uma ideia por cena.", [f"frame-{i:02d}.webp" for i in range(1, 9)])],
          texto="A Orbion Place é um sistema que mostra para quem vende em marketplace quanto realmente sobra de lucro "
                "em cada produto. O desafio era mostrar um dashboard cheio de informação sem cansar quem assiste. A "
                "solução foi mostrar uma coisa por vez: cada cena explica uma ideia só, como quando você conta algo "
