@@ -83,6 +83,17 @@ MOTION = [
          texto="Logo reveal desenvolvido para a Eleva, com foco em sofisticação, impacto visual e construção de marca. A "
                "animação utiliza movimentos fluidos, iluminação cinematográfica e transições minimalistas para valorizar a "
                "identidade visual da empresa de forma elegante e moderna."),
+    dict(slug="orbion-saas", nome="Orbion Place SaaS", cliente="Orbion Place", categoria="Motion SaaS", ano="2026",
+         duracao="0:26", formato="16:9 horizontal e 9:16 vertical", capa="projetos/orbion-saas/capa.webp",
+         # vídeos hospedados no próprio site (MP4 comprimido), não no Vimeo
+         mp4=("projetos/orbion-saas/orbion-horizontal.mp4", "projetos/orbion-saas/capa.webp"),
+         mp4_extras=[("Versão vertical", "A mesma animação em 9:16, para Reels e Stories.",
+                      "projetos/orbion-saas/orbion-vertical.mp4", "projetos/orbion-saas/capa-vertical.webp", "9/16")],
+         grupos=[("Destaques da animação", "Uma ideia por cena.", [f"frame-{i:02d}.webp" for i in range(1, 7)])],
+         texto="A Orbion Place é um sistema que mostra para quem vende em marketplace quanto realmente sobra de lucro "
+               "em cada produto. O desafio era mostrar um dashboard cheio de informação sem cansar quem assiste. A "
+               "solução foi mostrar uma coisa por vez: cada cena explica uma ideia só, como quando você conta algo "
+               "difícil para uma criança e vai por partes."),
     dict(slug="orbion-place", nome="Orbion Place", cliente="Orbion Place", categoria="Looping", ano="2026",
          duracao="Loop", formato="16:9 horizontal", capa="motion/orbion-capa.webp",
          abertura="projetos/orbion-place/frame-01.webp",
@@ -146,7 +157,7 @@ PASTAS = [
          projetos=["dj-thiago", "clinica-verassi", "daniela-souza", "louvre", "eleva", "orbion-place"]),
     dict(slug="institucional", nome="Institucional", apoio="Vídeos de marca", frase="Marca em movimento",
          imagem="motion/lotenet-capa.webp", anim="motion/lotenet.webp",
-         projetos=["lotenet"]),
+         projetos=["orbion-saas", "lotenet"]),
     dict(slug="social-media", nome="Social media", apoio="Posts, carrosséis e feeds", frase="Feed com cara de marca",
          imagem="social/peralta.webp", anim=None,
          projetos=[p["slug"] for p in SOCIAL]),
@@ -250,6 +261,11 @@ def iframe(vid, h, prop, titulo):
             f'title="{e(titulo)}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>')
 
 
+def video_local(arquivo, capa, prop, titulo, raiz):
+    return (f'<div class="video-frame" style="--proporcao:{prop}"><video src="{raiz}assets/{arquivo}" poster="{raiz}assets/{capa}" '
+            f'controls playsinline preload="metadata" title="{e(titulo)}"></video></div>')
+
+
 def secao_titulo(titulo, apoio):
     return (f'<div class="projeto-secao-topo"><h2 class="projeto-rotulo">{e(titulo)}</h2>'
             f'<p class="projeto-apoio">{e(apoio)}</p></div>')
@@ -266,6 +282,8 @@ def pagina_projeto(p, proximo):
         prop = p.get("proporcao", "16/9")
         if "video" in p:
             midia = iframe(*p["video"], prop, p["nome"])
+        elif "mp4" in p:
+            midia = video_local(*p["mp4"], prop, p["nome"], raiz)
         else:
             midia = (f'<div class="video-frame" style="--proporcao:{prop}"><img src="{raiz}assets/{p["abertura"]}" '
                      f'alt="{e(p["nome"])}" loading="eager"></div>')
@@ -274,6 +292,9 @@ def pagina_projeto(p, proximo):
             vids = "".join(iframe(v, h, pr, f'{p["nome"]} — peça {i + 2}') for i, (v, h, pr) in enumerate(p["extras"]))
             blocos.append(f'<section class="projeto-bloco">{secao_titulo("Mais peças da série", "Cada versão da marca, no formato em que roda.")}'
                           f'<div class="projeto-videos">{vids}</div></section>')
+        for titulo, apoio, arquivo, capa, pr in p.get("mp4_extras", []):
+            blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}'
+                          f'<div class="projeto-video-unico">{video_local(arquivo, capa, pr, f"{p['nome']} — {titulo}", raiz)}</div></section>')
         for titulo, apoio, arquivos in p.get("grupos", []):
             imgs = "".join(f'<img src="{raiz}assets/projetos/{p["slug"]}/{a}" alt="" loading="lazy">' for a in arquivos)
             blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}<div class="projeto-frames">{imgs}</div></section>')

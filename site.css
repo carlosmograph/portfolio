@@ -270,7 +270,7 @@ html.modo-claro .icon-wrap-mode{transform:translateY(-30px)}
   box-shadow:inset 0 0 0 1px var(--linha);transition:box-shadow .3s ease}
 .mosaico-item:hover .mosaico-midia{translate:0 -4px}
 .mosaico-item:hover .mosaico-midia::after{box-shadow:inset 0 0 0 1px rgba(143,138,255,.6)}
-.mosaico-midia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mosaico-midia img,.mosaico-midia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* o player ganha 2% de sobra para as bordas pretas do Vimeo ficarem fora do recorte */
 .mosaico-midia iframe{position:absolute;left:-1%;top:-1%;width:102%;height:102%;border:0}
 /* o vídeo entra por cima da capa só quando já está tocando */
@@ -470,7 +470,10 @@ html.modo-claro .radio-button-field input:checked + span{background:#1C1C1C;bord
 .video-frame{position:relative;aspect-ratio:var(--proporcao,16/9);width:min(100%,calc((100svh - 160px) * var(--proporcao,16/9)));
   margin-inline:auto;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--linha-forte);
   box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 90px -30px rgba(103,97,255,.45)}
-.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-frame video{object-fit:cover;background:#000}
+/* vídeo vertical sozinho: estreito e centralizado */
+.projeto-video-unico .video-frame{width:min(380px,100%)}
 
 /* ------------------------------------------------------------
    16. PÁGINA DE PROJETO (projetos/<slug>/, geradas por tools/gerar-projetos.py)

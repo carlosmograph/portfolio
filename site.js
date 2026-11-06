@@ -248,6 +248,23 @@
 
   /* --- mosaico: o vídeo do Vimeo (modo fundo: mudo, em loop, sem controles)
      só é criado quando o quadro chega perto da tela; até lá fica a capa. --- */
+  /* vídeos do próprio site no mosaico: só baixam perto da tela e pausam fora dela */
+  var locais = document.querySelectorAll(".mosaico-midia video[data-src]");
+  if (locais.length && window.IntersectionObserver) {
+    var obsLocal = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.getAttribute("src")) v.src = v.dataset.src;
+          if (!reduz) v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: "200px 0px" });
+    locais.forEach(function (v) { obsLocal.observe(v); });
+  }
+
   var quadros = document.querySelectorAll(".mosaico-midia[data-vimeo]");
   if (quadros.length && !reduz && window.IntersectionObserver) {
     var vimeo = new IntersectionObserver(function (es) {
