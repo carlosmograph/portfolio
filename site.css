@@ -495,6 +495,7 @@ html.modo-claro .radio-button-field input:checked + span{background:#1C1C1C;bord
 .projeto-apoio{font-size:14px;line-height:20px;color:var(--tx-medio)}
 /* styleframes e loops: duas colunas, cada imagem na proporção dela */
 .projeto-frames{columns:2;column-gap:12px}
+.projeto-frames.largo{columns:1}
 .projeto-frames img{display:block;width:100%;height:auto;margin-bottom:12px;border-radius:14px;border:1px solid var(--linha);break-inside:avoid}
 .projeto-videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .projeto-videos .video-frame{width:100%;border-radius:14px;box-shadow:none}

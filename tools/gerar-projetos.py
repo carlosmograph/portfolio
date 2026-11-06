@@ -89,7 +89,8 @@ MOTION = [
          mp4=("projetos/orbion-saas/orbion-horizontal.mp4", "projetos/orbion-saas/capa.webp"),
          mp4_extras=[("Versão vertical", "A mesma animação em 9:16, para Reels e Stories.",
                       "projetos/orbion-saas/orbion-vertical.mp4", "projetos/orbion-saas/capa-vertical.webp", "9/16")],
-         grupos=[("Styleframes", "Uma ideia por cena.", [f"frame-{i:02d}.webp" for i in range(1, 9)])],
+         grupos=[("Styleframes", "Uma ideia por cena.", [f"frame-{i:02d}.webp" for i in range(1, 9)]),
+                 ("Moodboard", "As referências que guiaram a direção visual.", ["moodboard.webp"], "largo")],
          texto="A Orbion Place é um sistema que mostra para quem vende em marketplace quanto realmente sobra de lucro "
                "em cada produto. O desafio era mostrar um dashboard cheio de informação sem cansar quem assiste. A "
                "solução foi mostrar uma coisa por vez: cada cena explica uma ideia só, como quando você conta algo "
@@ -295,9 +296,11 @@ def pagina_projeto(p, proximo):
         for titulo, apoio, arquivo, capa, pr in p.get("mp4_extras", []):
             blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}'
                           f'<div class="projeto-video-unico">{video_local(arquivo, capa, pr, f"{p['nome']} — {titulo}", raiz)}</div></section>')
-        for titulo, apoio, arquivos in p.get("grupos", []):
+        # cada grupo: (título, apoio, arquivos) ou (título, apoio, arquivos, "largo") para uma imagem só, em largura total
+        for titulo, apoio, arquivos, *largo in p.get("grupos", []):
             imgs = "".join(f'<img src="{raiz}assets/projetos/{p["slug"]}/{a}" alt="" loading="lazy">' for a in arquivos)
-            blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}<div class="projeto-frames">{imgs}</div></section>')
+            classe = "projeto-frames largo" if largo else "projeto-frames"
+            blocos.append(f'<section class="projeto-bloco">{secao_titulo(titulo, apoio)}<div class="{classe}">{imgs}</div></section>')
         dados = ficha([("Cliente", p["cliente"]), ("Categoria", p["categoria"]), ("Ano", p["ano"]),
                        ("Duração", p["duracao"]), ("Formato", p["formato"]),
                        ("Ferramentas", "After Effects · Premiere Pro")])
